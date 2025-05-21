@@ -9,19 +9,22 @@ PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	make -C $(PRINTF_DIR)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(PRINTF_LIB)
+	@echo -n "\033[32mCompilando $(NAME)" && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n ".\n"
+	@make --no-print-directory -C $(PRINTF_DIR)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(PRINTF_LIB)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C $(PRINTF_DIR)
-	rm -rf $(OBJ)
+	@echo -n "\033[34mLimpiando archivos objeto" && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n ".\n"
+	@make clean --no-print-directory -C $(PRINTF_DIR)
+	@rm -rf $(OBJ)
 
 fclean: clean
-	make fclean -C $(PRINTF_DIR)
-	rm -rf $(NAME)
+	@echo -n "\033[34mLimpiando binarios" && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n "." && sleep 0.5 && echo -n ".\n"
+	@make fclean --no-print-directory -C $(PRINTF_DIR)
+	@rm -rf $(NAME)
 
 re: fclean all
 

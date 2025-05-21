@@ -53,19 +53,19 @@ AR = ar rcs
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
 bonus : $(BONUS_OBJ) $(OBJ)
-	$(AR) $(NAME) $(BONUS_OBJ) $(OBJ)
+	@$(AR) $(NAME) $(BONUS_OBJ) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJ) $(BONUS_OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 

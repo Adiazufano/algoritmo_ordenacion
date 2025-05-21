@@ -11,20 +11,20 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	make bonus -C $(LIBFT_DIR)
-	cp $(LIBFT) $(NAME)
-	$(AR) $(NAME) $(OBJ)
+	@make bonus --no-print-directory -C $(LIBFT_DIR)
+	@cp $(LIBFT) $(NAME)
+	@$(AR) $(NAME) $(OBJ)
 
 %.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	make clean -C $(LIBFT_DIR)
-	rm -rf $(OBJ)
+	@make clean --no-print-directory -C $(LIBFT_DIR)
+	@rm -rf $(OBJ)
 
 fclean : clean
-	make fclean -C $(LIBFT_DIR)
-	rm -rf $(NAME)
+	@make fclean --no-print-directory -C $(LIBFT_DIR)
+	@rm -rf $(NAME)
 
 re : fclean all
 
