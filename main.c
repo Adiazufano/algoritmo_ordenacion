@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:18:30 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 12:15:18 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:44:13 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ void	error(void)
 	exit(1);
 }
 
+int	isordered(t_list *stack)
+{
+	while (stack && stack -> next)
+	{
+		if ((*(int *) stack->content > *(int *) stack->next->content))
+			return (0);
+		stack = stack -> next;
+	}
+	return (1);
+}
+
 void	print_stack(t_list **stack)
 {
 	t_list	*current;
@@ -42,10 +53,12 @@ void	print_stack(t_list **stack)
 	current = *stack;
 	while (current)
 	{
-		ft_printf("Contenido: %i, Index: %i\n", *(int *)current -> content, current -> index);
+		ft_printf("Contenido: %i, Index: %i\n",
+			*(int *)current -> content, current -> index);
 		current = current -> next;
 	}
 }
+
 int	main(int argc, char *argv[])
 {
 	int		index;
@@ -68,11 +81,8 @@ int	main(int argc, char *argv[])
 		free_resources(NULL, NULL, splited);
 		index++;
 	}
-	push(&stack_a, &stack_b, "sa");
-	push(&stack_a, &stack_b, "sa");
+	sort(&stack_a, &stack_b);
 	print_stack(&stack_a);
-	ft_printf("siguiente stack:\n");
-	print_stack(&stack_b);
 	free_resources(&stack_a, NULL, NULL);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:31:06 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 11:45:16 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:46:17 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ void	parser(t_list **stack_a, char **args,
 			char **splited, int *global_index);
 void	free_resources(t_list **stack_a, t_list **stack_b, char **splited);
 void	ss(t_list **stack1, t_list **stack2);
+int		list_size(t_list *stack);
+void	sort_size_2(t_list **stack_a, char *op);
+void	sort(t_list **stack_a, t_list **satck_b);
+int		isordered(t_list *stack);
+void	sort_size_3(t_list **stack_a);
+void	print_stack(t_list **stack);
+int	get_content(t_list *stack_a);
 #endif

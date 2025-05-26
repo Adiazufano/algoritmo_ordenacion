@@ -6,9 +6,11 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:15:32 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 11:27:39 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/26 19:45:51 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 long	ft_atol(char *nptr)
 {
@@ -45,4 +47,9 @@ int	ft_strcmp(char *s1, char *s2)
 		index++;
 	}
 	return (0);
+}
+
+int	get_content(t_list *stack_a)
+{
+	return (*(int *)stack_a->content);
 }
