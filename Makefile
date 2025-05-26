@@ -1,7 +1,7 @@
 NAME = push_swap
 CC = cc
 FLAGS = -Wall -Wextra -Werror
-SRCS = main.c operaciones.c
+SRCS = main.c operaciones.c utils.c check_args.c duplicate_operations.c
 OBJ = $(SRCS:.c=.o)
 PRINTF_DIR = printf
 PRINTF_LIB = $(PRINTF_DIR)/libftprintf.a
