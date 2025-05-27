@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:18:30 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 19:44:13 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:21:35 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	main(int argc, char *argv[])
 	}
 	sort(&stack_a, &stack_b);
 	print_stack(&stack_a);
+	ft_printf("\n");
+	print_stack(&stack_b);
 	free_resources(&stack_a, NULL, NULL);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:01:12 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 19:44:43 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/27 09:29:06 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,27 @@ void	sort_size_3(t_list **stack_a)
 
 void	sort_size_5(t_list **stack_a, t_list **stack_b)
 {
-	push(stack_a, stack_b, "pb");
-	push(stack_a, stack_b, "pb");
-	if (!isordered(*stack_a))
+	t_list	*temp;
+	t_list	*last;
+	temp = *stack_a;
+	while (temp -> next)
+	{
+		last = temp;
+		temp = temp -> next;
+	}
+	if (get_content(*stack_a) > get_content(temp))
+		rerotate(stack_a, "rra");
+	if (get_content((*stack_a) -> next) > get_content(last))
+		rerotate(stack_a, "rra");
+	push(stack_a, stack_b, "pa");
+	push(stack_a, stack_b, "pa");
+	if (!isordered((*stack_a)))
 		sort_size_3(stack_a);
-	if (!isordered(*stack_b))
-		sort_size_2(stack_b, "sb");
-	push(stack_b, stack_a, "pa");
-	if (!isordered(*stack_a))
-		rotate(stack_a, "ra");
-	push(stack_b, stack_a, "pa");
-	if (!isordered(*stack_a))
-		rotate(stack_a, "ra");
+	ft_printf("%d\n", isordered(*stack_b));
+	push(stack_b, stack_a, "pb");
+	push(stack_b, stack_a, "pb");
+	if (get_content(*stack_a) > get_content((*stack_a) -> next))
+		swap(stack_a, "sa");
 }
 
 void	sort(t_list **stack_a, t_list **stack_b)
