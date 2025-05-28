@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:18:30 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/27 09:21:35 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:19:04 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	print_stack(t_list **stack)
 int	main(int argc, char *argv[])
 {
 	int		index;
-	int		global_index;
 	t_list	*stack_a;
 	t_list	*stack_b;
 	char	**splited;
@@ -70,21 +69,20 @@ int	main(int argc, char *argv[])
 	index = 1;
 	stack_a = NULL;
 	stack_b = NULL;
-	global_index = 0;
 	if (argc < 2)
 		return (0);
 	while (index < argc)
 	{
 		splited = ft_split(argv[index], ' ');
 		check_args(splited, &stack_a);
-		parser(&stack_a, argv, splited, &global_index);
+		parser(&stack_a, argv, splited);
 		free_resources(NULL, NULL, splited);
 		index++;
 	}
+	/* sort(&stack_a, &stack_b); */
+	/* print_stack(&stack_a); */
 	sort(&stack_a, &stack_b);
-	print_stack(&stack_a);
-	ft_printf("\n");
-	print_stack(&stack_b);
+	//print_stack(&stack_a);
 	free_resources(&stack_a, NULL, NULL);
 	return (0);
 }

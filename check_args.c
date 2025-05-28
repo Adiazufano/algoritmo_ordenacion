@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:29:16 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/26 11:40:32 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/27 15:21:13 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	check_args(char **splited, t_list **stack_a)
 	}
 }
 
-void	parser(t_list **stack_a, char **args, char **splited, int *global_index)
+void	parser(t_list **stack_a, char **args, char **splited)
 {
 	int		index;
 	t_list	*new_node;
@@ -105,7 +105,6 @@ void	parser(t_list **stack_a, char **args, char **splited, int *global_index)
 		new_node = ft_lstnew(value);
 		if (!new_node)
 			error();
-		new_node -> index = (*global_index)++;
 		ft_lstadd_back(stack_a, new_node);
 		index++;
 	}
