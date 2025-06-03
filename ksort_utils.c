@@ -5,105 +5,102 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 09:24:35 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/28 10:05:19 by aldiaz-u         ###   ########.fr       */
+/*   Created: 2025/05/30 20:30:50 by aldiaz-u          #+#    #+#             */
+/*   Updated: 2025/05/30 22:55:53 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*stack_to_array(t_list *stack, int size)
-{
-	int	*array;
-	int	index;
-
-	array = malloc(size * sizeof(int));
-	if (!array)
-		return (NULL);
-	index = 0;
-	while (index < size)
-	{
-		array[index] = get_content(stack);
-		stack = stack -> next;
-		index++;
-	}
-	return (array);
-}
-
-void	sort_array(int	*arr, int size)
+// Asigna a cada nodo su índice ordenado (único)
+void	assign_index(t_list *stack, int *sorted_arr, int size)
 {
 	int	index;
-	int	j;
-	int	temp;
+	int	*assigned;
 
-	index = 0;
-	while (index < size - 1)
+	if (!stack || !sorted_arr || size <= 0)
+		return ;
+	assigned = ft_calloc(size, sizeof(int));
+	if (!assigned)
+		return ;
+	while (stack)
 	{
-		j = index + 1;
-		while (j < size)
+		index = 0;
+		while (index < size)
 		{
-			if (arr[index] > arr[j])
+			if (*(int *)stack->content == sorted_arr[index] && !assigned[index])
 			{
-				temp = arr[index];
-				arr[index] = arr[j];
-				arr[j] = temp;
+				stack->index = index;
+				assigned[index] = 1;
+				break ;
 			}
-			j++;
+			index++;
 		}
-		index++;
+		stack = stack->next;
 	}
+	free(assigned);
 }
 
-int	get_index(int *arr, int size, int value)
+// Devuelve el índice máximo de la lista
+int	find_max_index(t_list *stack)
 {
-	int	index;
+	int	max_index;
+	int	first;
 
-	index = 0;
-	while (index < size)
+	first = 1;
+	if (!stack)
+		return (-1);
+	while (stack)
 	{
-		if (arr[index] == value)
-			return (index);
-		index++;
+		if (first || stack->index > max_index)
+		{
+			max_index = stack->index;
+			first = 0;
+		}
+		stack = stack->next;
+	}
+	return (max_index);
+}
+
+// Devuelve la posición de un índice concreto en la lista
+int	get_pos_index(t_list *stack, int target_index)
+{
+	int	pos;
+
+	pos = 0;
+	while (stack)
+	{
+		if (stack->index == target_index)
+			return (pos);
+		pos++;
+		stack = stack->next;
 	}
 	return (-1);
 }
 
-int	find_max(t_list *stack)
-{
-	int	max;
-
-	max = get_content(stack);
-	while (stack)
-	{
-		if (get_content(stack) > max)
-			max = get_content(stack);
-		stack = stack->next;
-	}
-	return (max);
-}
-
+// Empuja de vuelta el mayor índice de stack_b a stack_a
 void	push_back_sorted(t_list **stack_a, t_list **stack_b)
 {
-	int		max;
-	int		pos;
-	t_list	*tmp;
+	int	max_index;
+	int	pos_index;
+	int	size_b;
 
 	while (*stack_b)
 	{
-		max = find_max(*stack_b);
-		pos = 0;
-		tmp = *stack_b;
-		while (get_content(tmp) != max)
-		{
-			pos++;
-			tmp = tmp->next;
-		}
-		if (pos <= list_size(*stack_b) / 2)
-			while (get_content(*stack_b) != max)
+		max_index = find_max_index(*stack_b);
+		if (max_index == -1)
+			break ;
+		pos_index = get_pos_index(*stack_b, max_index);
+		if (pos_index == -1)
+			break ;
+		size_b = ft_lstsize(*stack_b);
+		if (pos_index <= size_b / 2)
+			while (*stack_b && (*stack_b)->index != max_index)
 				rotate(stack_b, "rb");
 		else
-			while (get_content(*stack_b) != max)
+			while (*stack_b && (*stack_b)->index != max_index)
 				rerotate(stack_b, "rrb");
-		push(stack_b, stack_a, "pa");
+		if (*stack_b && (*stack_b)->index == max_index)
+			push(stack_b, stack_a, "pa");
 	}
 }

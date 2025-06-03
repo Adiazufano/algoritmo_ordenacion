@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:29:16 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/27 15:21:13 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:53:47 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,18 @@ void	duplicated_splited(char **splited)
 {
 	int	index;
 	int	j;
+	int	num1;
+	int	num2;
 
 	index = 0;
 	while (splited[index])
 	{
 		j = index + 1;
+		num1 = ft_atol(splited[index]);
 		while (splited[j])
 		{
-			if (!ft_strcmp(splited[index], splited[j]))
+			num2 = ft_atol(splited[j]);
+			if (num1 == num2)
 			{
 				free_resources(NULL, NULL, splited);
 				error();

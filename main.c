@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 09:18:30 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/28 10:19:04 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:03:57 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	free_resources(t_list **stack_a, t_list **stack_b, char **splited)
 	}
 }
 
-void	error(void)
+int	error(void)
 {
-	ft_printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
 
@@ -80,8 +80,8 @@ int	main(int argc, char *argv[])
 		index++;
 	}
 	/* sort(&stack_a, &stack_b); */
-	/* print_stack(&stack_a); */
 	sort(&stack_a, &stack_b);
+	//print_stack(&stack_a); 
 	//print_stack(&stack_a);
 	free_resources(&stack_a, NULL, NULL);
 	return (0);
