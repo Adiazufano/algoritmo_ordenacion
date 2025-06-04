@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 10:31:06 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/30 22:57:40 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/06/04 11:20:13 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		*stack_to_array(t_list *stack, int size);
 void	sort_array(int	*arr, int size);
 void	ksort(t_list **stack_a, t_list **stack_b);
 int		find_min(t_list *stack);
-void	push_back_sorted(t_list **stack_a, t_list **stack_b);
 void	sort_array(int	*arr, int size);
 int		*stack_to_array(t_list *stack, int size);
 int		get_pos_index(t_list *stack, int target_index);

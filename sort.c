@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 16:01:12 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/30 23:00:21 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/06/03 16:17:05 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	sort_size_5(t_list **stack_a, t_list **stack_b)
 	int	i;
 
 	i = 0;
-	min = find_min((*stack_a));
 	while (i < 2)
 	{
 		min = find_min(*stack_a);
@@ -57,10 +56,7 @@ void	sort_size_5(t_list **stack_a, t_list **stack_b)
 		push(stack_a, stack_b, "pb");
 		i++;
 	}
-	if (ft_lstsize(*stack_a) == 3)
-		sort_size_3(stack_a);
-	else
-		sort_size_2(stack_a, "sa");
+	sort_size_3(stack_a);
 	push(stack_b, stack_a, "pa");
 	push(stack_b, stack_a, "pa");
 }
@@ -73,12 +69,12 @@ void	sort(t_list **stack_a, t_list **stack_b)
 	if (!isordered(*stack_a))
 	{
 		if (size == 2)
-		sort_size_2(stack_a, "sa");
-	else if (size == 3)
-		sort_size_3(stack_a);
-	else if (size > 3 && size <= 5)
-		sort_size_5(stack_a, stack_b);
-	else
-		ksort(stack_a, stack_b);
+			sort_size_2(stack_a, "sa");
+		else if (size == 3)
+			sort_size_3(stack_a);
+		else if (size > 3 && size <= 5)
+			sort_size_5(stack_a, stack_b);
+		else
+			ksort(stack_a, stack_b);
 	}
 }

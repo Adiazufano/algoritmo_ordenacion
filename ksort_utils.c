@@ -6,7 +6,7 @@
 /*   By: aldiaz-u <aldiaz-u@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 20:30:50 by aldiaz-u          #+#    #+#             */
-/*   Updated: 2025/05/30 22:55:53 by aldiaz-u         ###   ########.fr       */
+/*   Updated: 2025/06/04 11:19:44 by aldiaz-u         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,31 +76,4 @@ int	get_pos_index(t_list *stack, int target_index)
 		stack = stack->next;
 	}
 	return (-1);
-}
-
-// Empuja de vuelta el mayor índice de stack_b a stack_a
-void	push_back_sorted(t_list **stack_a, t_list **stack_b)
-{
-	int	max_index;
-	int	pos_index;
-	int	size_b;
-
-	while (*stack_b)
-	{
-		max_index = find_max_index(*stack_b);
-		if (max_index == -1)
-			break ;
-		pos_index = get_pos_index(*stack_b, max_index);
-		if (pos_index == -1)
-			break ;
-		size_b = ft_lstsize(*stack_b);
-		if (pos_index <= size_b / 2)
-			while (*stack_b && (*stack_b)->index != max_index)
-				rotate(stack_b, "rb");
-		else
-			while (*stack_b && (*stack_b)->index != max_index)
-				rerotate(stack_b, "rrb");
-		if (*stack_b && (*stack_b)->index == max_index)
-			push(stack_b, stack_a, "pa");
-	}
 }
